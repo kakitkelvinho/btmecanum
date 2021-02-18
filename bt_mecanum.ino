@@ -18,7 +18,7 @@ void northeast(int n);
 void northwest(int n);
 void southwest(int n);
 void southeast(int n);
-byte command = 0;  
+byte command[2];  
 int n = 10;
 void setup() {
   // put your setup code here, to run once:
@@ -36,46 +36,47 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  while (Serial.available() > 0) {
-    
-    command = Serial.read(); 
-    Serial.println(command);  
+  while (Serial.available() > 1) {
 
-     switch (command){
+    for (int i = 0; i < 2; i++)
+    {
+      command[i] = Serial.read(); 
+    }
+    
+ 
+
+     switch (command[0]){
     case 1:
-      north(n);
+      north(command[1]);
       Serial.println("Received North");
       break;
     case 2:
-      south(n);
+      south(command[1]);
       Serial.println("Received South");
       break;
     case 3:
-      east(n);
+      east(command[1]);
       break;
     case 4:
-      west(n);
+      west(command[1]);
       break;
     case 5:
-      northeast(n);
+      northeast(command[1]);
       break;
     case 6:
-      northwest(n);
+      northwest(command[1]);
       break;
     case 7:
-      southeast(n);
+      southeast(command[1]);
       break;
     case 8:
-      southwest(n);
+      southwest(command[1]);
       break;
     case 9:
-      anticlockwise(n);
+      anticlockwise(command[1]);
       break;
     case 10:
-      clockwise(n);
-      break;
-    case 0:
-      idle();
+      clockwise(command[1]);
       break;
     default:
       idle();
@@ -83,8 +84,7 @@ void loop() {
 }}
 
 }
-
-
+///////////////////////////////////////////////////////////////////////////////////////
 void idle() {
   fl.kill();
   fr.kill();
