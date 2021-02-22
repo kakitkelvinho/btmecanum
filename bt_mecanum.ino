@@ -158,15 +158,3 @@ void anticlockwise(int n) {
   br.forward(n);
 
 }
-
-
-int sense(int target) {
-  
-  int masterTime = millis();
-  int masterCount = 0;
-  while (masterTime < 11)
-  {
-    if analogRead(fl.getSensor(), HIGH)
-    masterTime +=     
-  }
-}
