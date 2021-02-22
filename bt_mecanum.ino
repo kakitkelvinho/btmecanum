@@ -99,7 +99,12 @@ void north(int n) {
   fr.forward(n);
   bl.forward(n);
   br.forward(n);
-}
+
+  int counterfr = 0;
+  int counterbl = 0;
+  int counterbr = 0;
+
+
 
 void south(int n) {
   fl.backward(n);
