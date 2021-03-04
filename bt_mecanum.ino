@@ -2,12 +2,13 @@
 
 #include "motor.h"
 
-  
+#define state 3
+
   
 motor fl(4, 2, 5, A5);
-motor fr(A2, A3, 3, A4);
+motor fr(A2, A3, 6, A4);
 motor bl(9, 8, 10, A1);
-motor br(6, 7, 11, A0);
+motor br(A7, 7, 11, A0);
 
 void idle();
 void north(int n);
@@ -18,6 +19,9 @@ void northeast(int n);
 void northwest(int n);
 void southwest(int n);
 void southeast(int n);
+void clockwise(int n);
+void anticlockwise(int n);
+
 byte command[2];  
 int n = 10;
 void setup() {
@@ -26,6 +30,8 @@ void setup() {
   Serial.println("BT serial initialized...");
   pinMode(0,INPUT);
   pinMode(1, OUTPUT);  
+  pinMode(state, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(state), idle, CHANGE);
   idle();
  
 
@@ -83,6 +89,7 @@ void loop() {
 
 }}
 
+  
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 void idle() {
@@ -100,10 +107,11 @@ void north(int n) {
   bl.forward(n);
   br.forward(n);
 
-  int counterfr = 0;
-  int counterbl = 0;
-  int counterbr = 0;
+//  int counterfr = 0;
+//  int counterbl = 0;
+//  int counterbr = 0;
 
+}
 
 
 void south(int n) {
