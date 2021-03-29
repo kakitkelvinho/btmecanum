@@ -9,18 +9,7 @@ motor fl(4, 2, 5, A5);
 motor fr(A2, A3, 6, A4);
 motor bl(9, 8, 10, A1);
 motor br(12, 7, 11, A0);
-//
-//void idle();
-//void north(int n);
-//void south(int n);
-//void west(int n);
-//void east(int n);
-//void northeast(int n);
-//void northwest(int n);
-//void southwest(int n);
-//void southeast(int n);
-//void clockwise(int n);
-//void anticlockwise(int n);
+
 
 byte command[2];  
 int n = 10;
@@ -54,11 +43,9 @@ void loop() {
      switch (command[0]){
     case 1:
       north(command[1]);
-      Serial.println("Received North");
       break;
     case 2:
       south(command[1]);
-      Serial.println("Received South");
       break;
     case 3:
       east(command[1]);
