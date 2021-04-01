@@ -20,7 +20,7 @@ class motor {
     void kill();
     void forward(int n);
     void backward(int n);
-    int getSensor();
+    int sense();
     
   
 };

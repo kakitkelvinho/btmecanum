@@ -47,6 +47,7 @@ void motor::kill() {
   digitalWrite(in2, LOW);
 }
 
-int motor::getSensor() {
-  return sensor;
+int motor::sense() {
+  int value =  digitalRead(sensor);
+  return value;
 }

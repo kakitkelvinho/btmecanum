@@ -10,9 +10,9 @@ motor fr(A2, A3, 6, A4);
 motor bl(9, 8, 10, A1);
 motor br(12, 7, 11, A0);
 
-
 byte command[2];  
 int n = 10;
+int counter;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
@@ -30,8 +30,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
-  while (Serial.available() > 1) {
+ 
+  if (Serial.available() > 1) {
 
     for (int i = 0; i < 2; i++)
     {
@@ -43,7 +43,6 @@ void loop() {
      switch (command[0]){
     case 1:
       north(command[1]);
-      break;
     case 2:
       south(command[1]);
       break;
@@ -73,11 +72,39 @@ void loop() {
       break;
     default:
       idle();
+  }
+  counter = 0;
+  while (Serial.available() == 0)
+  {
+    Serial.println(counter);
+    if (digitalRead(A5)==HIGH)
+    {
+      ++counter;   
+    }
+  }
 
-}}
+  
+
+  //Serial.println("Command received. Awaiting...");
+  //Execute PID loop here?
+  
+  // fl - A5
+  // fr - A4
+  // bl - A1
+  // br - A0
+
 
   
 }
+
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// Reading functions
+
+
 ///////////////////////////////////////////////////////////////////////////////////////
 void idle() {
   fl.kill();
